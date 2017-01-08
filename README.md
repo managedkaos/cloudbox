@@ -5,24 +5,20 @@ A docker image for working with public cloud providers like AWS, Azure, and Goog
 ## Basing the box on CentOS Linux release 7.3.1611 (Core):
 - docker pull centos:centos7
 
-It already has Python 2.7.x:
-- `docker run -it centos:centos7 python --version`
-
-It Needs pip:
 ```
-    7  rpm -iUvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    8  yum install -y python-pip
-    9  pip --version
-   10  pip install -U pip
-   11  pip --version
-   13  pip install awscli
-   14  pip install boto3
-   15  pip install gcloud
-   16  pip install azure
-   21  yum install which git
-   22  pip install aws-shell
-   23  pip install ansible (not working yet!)
-   27  yum groupinstall "Development Tools"
+rpm -iUvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+yum update -y
+yum install -y ansible python2-pip which git mlocate wget man-db
+yum -y groupinstall "Development Tools"
+pip install -U pip
+pip install awscli
+pip install boto3
+pip install gcloud
+pip install azure
+pip install aws-shell
+pip install troposphere
+wget https://releases.hashicorp.com/terraform/0.8.2/terraform_0.8.2_linux_amd64.zip -o /tmp/terraform.zip
+unzip /tmp/terraform_0.8.2_linux_amd64.zip -d /usr/local/bin
 ```
 
 ## Basing the box on Alpine Linux
@@ -40,6 +36,6 @@ It Needs pip:
   10 alias
   11 which gcc
   12 alias gcc='/usr/bin/gcc -I/usr/include/python2.7/Python'
-  13 pip install awscli boto3 gcloud azure-cli
+  13 pip install awscli boto3 gcloud azure-cli (not working yet)
   14 history
 ```
